@@ -11,7 +11,7 @@ summary: |
 
 This Genesys Cloud Developer Blueprint provides instructions for getting Detailed Records using the Analytics API. There are three perspective of data in Analytics API. Instantaneous Observations, Aggregate Metrics and Detailed Records. This blueprint will focus on the detailed records.
 
-![Flowchart](images/flowchart.png "Flowchart")
+![Flowchart](images/flowchart.jpg "Flowchart")
 
 ## Definitions
 
@@ -123,7 +123,7 @@ A recommended Genesys Cloud role for the solutions engineer is Master Admin. For
 
     ![Available and Interacting Query Result](images/available-and-interacting-query-result.jpg "Available and Interacting Query Result")
 
-  For the conversation data, this is where the detail of every conversation will be generated. This will generate data like, name, ANI, direction and metrics. Take note the every conversation has a different properties.
+  For the conversation data, this is where the detail of every conversation will be generated. This will generate data like, name, ANI, direction and metrics. Take note that every conversation has a different properties.
 
     ![Standard Conversation Query Result](images/standard-conversation-query-result.jpg "Standard Conversation Query Result")
 
