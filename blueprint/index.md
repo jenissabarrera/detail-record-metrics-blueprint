@@ -80,7 +80,7 @@ A recommended Genesys Cloud role for the solutions engineer is Master Admin. For
 1. Open the Application on the Apps menu. On the dashboard user will see basic conversation details such as number of chats, calls, abandoned calls and other details from a certain date range. 
   ![Dashboard Conversation Detail](images/dashboard-conversation-detail.png "Dashboard Conversation Detail")
 2. Click on Select Agent and details of the selected agent will generate on the table. 
-   ![Dashboard Conversation Detail](images/dashboard-conversation-detail.png "Dashboard Conversation Detail")
+   ![Dashboard User Detail](images/user-details.png "Dashboard User Detail")
 
     * In modifying the codes, the user can use the [Analytics query builder](https://developer.genesys.cloud/developer-tools/#/analytics-query-builder) in generating the body for each query execution. It also generates the date format that will be needed for the code. 
 
