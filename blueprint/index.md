@@ -11,7 +11,7 @@ summary: |
 
 This Genesys Cloud Developer Blueprint explains how to get actual data that user can use to see the efficiency of their contact centers that focuses on users and conversation data. Using this app, users can see the historical details of their contact centers on Dashboard such as Number of calls, Agent Details, Number of Interactions,etc. This app can serve as sample dashboard for users that later on, they can modify to serve their organization's needs.  
 
-![Flowchart](images/flowchart.jpg "Flowchart")
+![Flowchart](images/flowchart.png "Flowchart")
 
 ## Definitions
 
@@ -53,7 +53,7 @@ A recommended Genesys Cloud role for the solutions engineer is Master Admin. For
 1. Click this link and follow the step by step procedure on how to [Create an OAuth Client Token Implicit Grant](https://help.mypurecloud.com/articles/create-an-oauth-client/). 
 2. Once the OAuth is successfully created. Go to Client Details. Make sure to add `http://localhost:3000` in the Authorize redirect URIs section. 
  ![Client Details Authorize Redirect URI](images/client-details-authorize-redirect-uri.png "Client Details Authorize Redirect URI")
-3. In the downloaded code sample, open the [config.js file] (https://github.com/jenissabarrera/generate-detail-record-metrics-blueprint/blob/main/docs/scripts/config.js). Add the clientID you generated. 
+3. In the downloaded code sample, open the [config.js file](https://github.com/jenissabarrera/generate-detail-record-metrics-blueprint/blob/main/docs/scripts/config.js). Add the clientID you generated. 
 4. Specify the region of your Genesys Cloud organization e.g `mypurecloud.com, mypurecloud.au`.
 
 ### Host and run the Nodejs.app server
@@ -70,15 +70,15 @@ A recommended Genesys Cloud role for the solutions engineer is Master Admin. For
 1. Go to your Genesys Cloud Org and add the integration. Search for Client Application and click the install button.
  ![Install Client Application](images/client-app-install.png "Install Client Application")
 2. Go to details tab and rename the integration to your desired name, and make sure to toggle Active.
- ![Rename the Integration](images/rename-integration.png "Rename the Integration")
+ ![Rename the Integration](images/rename-integration.PNG "Rename the Integration")
 3. Click configuration tab. Make sure to change to change the Application URL value to `http://localhost:3000/?conversationid={{pcConversationId}}&language={{pcLangTag}}`. On the group filtering, make sure to include the groups where the users of this app are included. 
-   ![Change URL and group value](images/change-url-and-group.png "Change URL and group value")
+   ![Change URL and group value](images/change-url-and-group.PNG "Change URL and group value")
 4. Once done with all the changes, don't forget to click Save.
 
 ### Test the solution
 
 1. Open the Application on the Apps menu. On the dashboard user will see basic conversation details such as number of chats, calls, abandoned calls and other details from a certain date range. 
-  ![Dashboard Conversation Detail](images/dashboard-conversation-detail.png "Dashboard Conversation Detail")
+  ![Dashboard Conversation Detail](images/dashboard-conversation-detail.PNG "Dashboard Conversation Detail")
 2. Click on Select Agent and details of the selected agent will generate on the table. 
    ![Dashboard User Detail](images/user-details.png "Dashboard User Detail")
 
