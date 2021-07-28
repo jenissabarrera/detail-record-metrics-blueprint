@@ -6,10 +6,10 @@ icon: blueprint
 image: 
 category: 
 summary: |
-  This Genesys Cloud Developer Blueprint provides instructions for getting Detailed Records using the Analytics API. There are three perspective of data in Analytics API. Instantaneous Observations, Aggregate Metrics and Detailed Records. This blueprint will focus on the detailed records. 
+  This Genesys Cloud Developer Blueprint provides a sample on how to use Detailed Records Metrics using the Analytics API. 
 ---
 
-This Genesys Cloud Developer Blueprint provides instructions for getting Detailed Records using the Analytics API. There are three perspective of data in Analytics API. Instantaneous Observations, Aggregate Metrics and Detailed Records. This blueprint will focus on the detailed records.
+This Genesys Cloud Developer Blueprint explains how to get actual data that user can use to see the efficiency of their contact centers that focuses on users data and conversation data. 
 
 ![Flowchart](images/flowchart.jpg "Flowchart")
 
@@ -27,12 +27,19 @@ Implementing this solution requires experience in several areas or a willingness
 - Genesys Cloud Platform API knowledge
 
 
+### Software development kits (SDKs)
+
+* **Genesys Cloud Platform API SDK** - Client libraries used to simply integration to Genesys Cloud. This SDK is used for the getting the necessary historical data of agents and interactions.
+
+
 ### Genesys Cloud account requirements
 
 This solution requires a Genesys Cloud license. For more information on licensing, see [Genesys Cloud Pricing](https://www.genesys.com/pricing "Opens the pricing article").
 
 A recommended Genesys Cloud role for the solutions engineer is Master Admin. For more information on Genesys Cloud roles and permissions, see the [Roles and permissions overview](https://help.mypurecloud.com/?p=24360 "Opens the Roles and permissions overview article").
 
+## Implementation steps
+* [Clone the repository](#download-the-repository-containing-the-project-files "Goes to the Download the repository from GitHub")
 
 ### Procedure
 1. Login to the web app version of your Genesys Cloud organization.
