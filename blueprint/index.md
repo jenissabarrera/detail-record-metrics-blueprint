@@ -84,9 +84,6 @@ A recommended Genesys Cloud role for the solutions engineer is Master Admin. For
 
     * In modifying the codes, the user can use the [Analytics query builder](https://developer.genesys.cloud/developer-tools/#/analytics-query-builder) in generating the body for each query execution. It also generates the date format that will be needed for the code. 
 
-
-
-
 ## Additional Resources
 * [Genesys Cloud Developer Center](https://developer.mypurecloud.com/)
 * [Analytics Query Builder developer tool quick start](https://developer.mypurecloud.com/gettingstarted/developer-tools-analytics-query.html)
