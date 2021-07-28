@@ -40,8 +40,8 @@ A recommended Genesys Cloud role for the solutions engineer is Master Admin. For
 
 ## Implementation steps
 * [Clone the repository](#clone-the-repository-containing-the-project-files "Goes to the Download the repository from GitHub")
-* [Generate an OAuth Client Credentials in Genesys Cloud](#generate-an-oauth-client-with-client-credentials-in-genesys-cloud "Proceeds to the Creation of OAuth Client Credentials in Genesys Cloud")
-* [Host and run the Nodejs.app server](#host-and-run-the-Nodejs.app-server "Opens the Nodejs.app server and runs the application locally")
+* [Generate an OAuth Client Credentials in Genesys Cloud](#generate-an-oauth-client-token-implicit-grant-in-genesys-cloud "Proceeds to the Creation of OAuth Client Credentials in Genesys Cloud")
+* [Host and run the Nodejs.app server](#host-and-run-the-nodejs.app-server "Opens the Nodejs.app server and runs the application locally")
 * [Install and activate the application inside your Genesys Cloud Org](#install-and-activate-the-analytics-detailed-record-metrics-app-in-your-genesys-cloud-platform "Goes to app activation and installation inside genesys cloud")
 * [Test the sololution](#test-the-solution  "Testing if the solution was set up successfully")
 
@@ -78,9 +78,9 @@ A recommended Genesys Cloud role for the solutions engineer is Master Admin. For
 ### Test the solution
 
 1. Open the Application on the Apps menu. On the dashboard user will see basic conversation details such as number of chats, calls, abandoned calls and other details from a certain date range. 
-  ![Dashboard Conversation Detail](images/dashboard-conversation-detail.PNG "Dashboard Conversation Detail")
+  ![Dashboard Conversation Detail](images/dashboard-conversation-details.PNG "Dashboard Conversation Detail")
 2. Click on Select Agent and details of the selected agent will generate on the table. 
-   ![Dashboard User Detail](images/user-details.png "Dashboard User Detail")
+   ![Dashboard User Detail](images/user-details.PNG "Dashboard User Detail")
 
     * In modifying the codes, the user can use the [Analytics query builder](https://developer.genesys.cloud/developer-tools/#/analytics-query-builder) in generating the body for each query execution. It also generates the date format that will be needed for the code. 
 
