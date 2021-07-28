@@ -9,7 +9,7 @@ summary: |
   This Genesys Cloud Developer Blueprint provides a sample on how to use Detailed Records Metrics using the Analytics API. 
 ---
 
-This Genesys Cloud Developer Blueprint explains how to get actual data that user can use to see the efficiency of their contact centers that focuses on users data and conversation data. 
+This Genesys Cloud Developer Blueprint explains how to get actual data that user can use to see the efficiency of their contact centers that focuses on users and conversation data. Using this app, users can see the historical details of their contact centers on Dashboard such as Number of calls, Agent Details, Number of Interactions,etc. This app can serve as sample dashboard for users that later on, they can modify to serve their organization's needs.  
 
 ![Flowchart](images/flowchart.jpg "Flowchart")
 
@@ -39,114 +39,54 @@ This solution requires a Genesys Cloud license. For more information on licensin
 A recommended Genesys Cloud role for the solutions engineer is Master Admin. For more information on Genesys Cloud roles and permissions, see the [Roles and permissions overview](https://help.mypurecloud.com/?p=24360 "Opens the Roles and permissions overview article").
 
 ## Implementation steps
-* [Clone the repository](#download-the-repository-containing-the-project-files "Goes to the Download the repository from GitHub")
+* [Clone the repository](#clone-the-repository-containing-the-project-files "Goes to the Download the repository from GitHub")
+* [Generate an OAuth Client Credentials in Genesys Cloud](#generate-an-oauth-client-with-client-credentials-in-genesys-cloud "Proceeds to the Creation of OAuth Client Credentials in Genesys Cloud")
+* [Host and run the Nodejs.app server](#host-and-run-the-Nodejs.app-server "Opens the Nodejs.app server and runs the application locally")
+* [Install and activate the application inside your Genesys Cloud Org](#install-and-activate-the-analytics-detailed-record-metrics-app-in-your-genesys-cloud-platform "Goes to app activation and installation inside genesys cloud")
+* [Test the sololution](#test-the-solution  "Testing if the solution was set up successfully")
 
-### Procedure
-1. Login to the web app version of your Genesys Cloud organization.
-2. Open the Analytics Query Builder developer tool.
-3. From the Query Type menu, select Conversation Detail or User Data.
-  ![Analytics Query Builder](images/analytics-query-builder.jpg "Analytics Query Builder")
+### Clone the repository containing the project files
 
-4. Add start and end date for the date range of the of the query.
+* Download the [generate-detail-record-metrics-blueprint](https://github.com/jenissabarrera/generate-detail-record-metrics-blueprint "Opens the generate-detail-record-metrics-blueprint repository in GitHub") repository from GitHub.
 
-  For the user data, if you selected the default properties of the query the result will be this. 
+### Generate an OAuth Client Token Implicit Grant in Genesys Cloud
+1. Click this link and follow the step by step procedure on how to [Create an OAuth Client Token Implicit Grant](https://help.mypurecloud.com/articles/create-an-oauth-client/). 
+2. Once the OAuth is successfully created. Go to Client Details. Make sure to add `http://localhost:3000` in the Authorize redirect URIs section. 
+ ![Client Details Authorize Redirect URI](images/client-details-authorize-redirect-uri.png "Client Details Authorize Redirect URI")
+3. In the downloaded code sample, open the [config.js file] (https://github.com/jenissabarrera/generate-detail-record-metrics-blueprint/blob/main/docs/scripts/config.js). Add the clientID you generated. 
+4. Specify the region of your Genesys Cloud organization e.g `mypurecloud.com, mypurecloud.au`.
 
-   ![User Query](images/standard-user-query-result.jpg "Standard User Query")
+### Host and run the Nodejs.app server
+
+1. Make sure that you are using the updated Node.js version. 
+
+  * Open the command line and install the latest version. Type `npm install -g n latest`.
+
+2. Go to the directory where the files are located and install node modules. Type `npm install`  
+3. Run the server locally, type `node index.js` in the command line. Go to your browser and open http://localhost:3000/ to check if the app is successfully working on your localhost.
+
+### Install and activate the Analytics Detailed Record Metrics App in your Genesys Cloud Platform
+
+1. Go to your Genesys Cloud Org and add the integration. Search for Client Application and click the install button.
+ ![Install Client Application](images/client-app-install.png "Install Client Application")
+2. Go to details tab and rename the integration to your desired name, and make sure to toggle Active.
+ ![Rename the Integration](images/rename-integration.png "Rename the Integration")
+3. Click configuration tab. Make sure to change to change the Application URL value to `http://localhost:3000/?conversationid={{pcConversationId}}&language={{pcLangTag}}`. On the group filtering, make sure to include the groups where the users of this app are included. 
+   ![Change URL and group value](images/change-url-and-group.png "Change URL and group value")
+4. Once done with all the changes, don't forget to click Save.
+
+### Test the solution
+
+1. Open the Application on the Apps menu. On the dashboard user will see basic conversation details such as number of chats, calls, abandoned calls and other details from a certain date range. 
+  ![Dashboard Conversation Detail](images/dashboard-conversation-detail.png "Dashboard Conversation Detail")
+2. Click on Select Agent and details of the selected agent will generate on the table. 
+   ![Dashboard Conversation Detail](images/dashboard-conversation-detail.png "Dashboard Conversation Detail")
+
+    * In modifying the codes, the user can use the [Analytics query builder](https://developer.genesys.cloud/developer-tools/#/analytics-query-builder) in generating the body for each query execution. It also generates the date format that will be needed for the code. 
 
 
-    Some of the generated results are user id and primary presence. In the system presence key under the primary presence, this is where the availability of the agent shows. The start and end time of the specific availability is also available. Basically, how the statuses of an agent looks like for a specific time and day.
 
-   ```json
-   {
-  "primaryPresence": [
-        {
-          "startTime": "2021-04-26T15:55:52.163Z",
-          "endTime": "2021-04-26T16:26:20.851Z",
-          "systemPresence": "AVAILABLE",
-          "organizationPresenceId": "6a3af858-942f-489d-9700-5f9bcdcdae9b"
-        },
-        {
-          "startTime": "2021-04-26T16:26:20.851Z",
-          "endTime": "2021-04-26T20:37:00.083Z",
-          "systemPresence": "OFFLINE",
-          "organizationPresenceId": "ccf3c10a-aa2c-4845-8e8d-f59fa48c58e5"
-        },
-        {
-          "startTime": "2021-04-26T20:37:00.083Z",
-          "endTime": "2021-04-26T21:36:53.702Z",
-          "systemPresence": "AVAILABLE",
-          "organizationPresenceId": "6a3af858-942f-489d-9700-5f9bcdcdae9b"
-        },
-        {
-          "startTime": "2021-04-26T21:36:53.702Z",
-          "systemPresence": "OFFLINE",
-          "organizationPresenceId": "ccf3c10a-aa2c-4845-8e8d-f59fa48c58e5"
-        }
-      ]
-   }
-   ```
 
-   Routing Status data is also available which shows the history of interaction of agents and the start and end time stamps of the interaction.
-
-      ```json
-   {
-  "primaryPresence": [
-        {
-          "startTime": "2021-04-26T15:55:52.163Z",
-          "endTime": "2021-04-26T16:26:20.851Z",
-          "systemPresence": "AVAILABLE",
-          "organizationPresenceId": "6a3af858-942f-489d-9700-5f9bcdcdae9b"
-        },
-        {
-          "startTime": "2021-04-26T16:26:20.851Z",
-          "endTime": "2021-04-26T20:37:00.083Z",
-          "systemPresence": "OFFLINE",
-          "organizationPresenceId": "ccf3c10a-aa2c-4845-8e8d-f59fa48c58e5"
-        },
-        {
-          "startTime": "2021-04-26T20:37:00.083Z",
-          "endTime": "2021-04-26T21:36:53.702Z",
-          "systemPresence": "AVAILABLE",
-          "organizationPresenceId": "6a3af858-942f-489d-9700-5f9bcdcdae9b"
-        },
-        {
-          "startTime": "2021-04-26T21:36:53.702Z",
-          "systemPresence": "OFFLINE",
-          "organizationPresenceId": "ccf3c10a-aa2c-4845-8e8d-f59fa48c58e5"
-        }
-      ]
-   }
-   ```
-
-    The user can also modify the search and add a specific filter. In this case, we will search for available agents and interacting agents. To do so, go to Presence filters, in the predicates section click on dimension and choose systemPresence. Choose available as value. 
-
-    ![System Presence Available](images/system-presence-available.jpg "Sytem Presence Available")
-
-    For the Routing Status, go to Routing Status Filters. Select or as type. Under the predicates value choose dimension, on the dimension choose Routing Status. And select Interacting as Value.
-
-    ![Routing Status Interaction](images/routing-status-interacting.jpg "Routing Status Interacting")
-
-    This is the result when the filters are applied, other data will be filtered out. This will make the result straightforward depending on the user need.
-
-    ![Available and Interacting Query Result](images/available-and-interacting-query-result.jpg "Available and Interacting Query Result")
-
-  For the conversation data, this is where the detail of every conversation will be generated. This will generate data like, name, ANI, direction and metrics. Take note that every conversation has a different properties.
-
-    ![Standard Conversation Query Result](images/standard-conversation-query-result.jpg "Standard Conversation Query Result")
-
-     The user can also modify the search and add specific filter. In this case, we will search for inbound and voice data. To do so, go to Segment filters, in the predicates section click on type and select Dimension. On the dimension select value. And on the value field type in inbound. For the voice filter add another predicate. Select dimension as type and select direction for dimension. Type voice on the value field.
-
-     ![Voice and Inbound Conversation Query](images/voice-and-inbound-conversation-query.jpg "Voice and Inbound Conversation Query")
-
-    Same with the previous result, the generated data is personalized once filtered out. 
-    
-     ![Voice and Inbound Conversation Query Result](images/voice-and-inbound-conversation-query-result.jpg "Voice and Inbound Conversation Query Result")
-
-5. Once done with the properties modification, the user can now copy the generated query and use it for their application.
-
-![Generated Query](images/generated-query.jpg "Generated Query")
-
-    
 ## Additional Resources
 * [Genesys Cloud Developer Center](https://developer.mypurecloud.com/)
 * [Analytics Query Builder developer tool quick start](https://developer.mypurecloud.com/gettingstarted/developer-tools-analytics-query.html)

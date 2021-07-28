@@ -4,6 +4,7 @@ import view from './view.js';
 const platformClient = require('platformClient');
 const client = platformClient.ApiClient.instance;
 
+// API Instances
 let analyticsApi = new platformClient.AnalyticsApi();
 let usersApi = new platformClient.UsersApi();
 let interval;
@@ -15,6 +16,7 @@ document.getElementById("agentsList").addEventListener("change", function () {
   generateUserData(selectedUserId);
 }, false)
 
+// Initial Setup
 client.setEnvironment(configuration.genesysCloud.region);
 document.addEventListener('DOMContentLoaded', function () {
   client.loginImplicitGrant(configuration.clientID, configuration.redirectUri)
@@ -60,6 +62,7 @@ function formatDate() {
 
 }
 
+// Change the date to the user's desired date.
 function getDate() {
 
   interval = "2021-03-31T16:00:00.000Z/2021-04-29T16:00:00.000Z"
@@ -69,7 +72,7 @@ function getDate() {
 function getNumberofCalls() {
 
   let body = {
-    interval: "2021-03-31T16:00:00.000Z/2021-04-29T16:00:00.000Z",
+    interval: interval,
     order: "asc",
     orderBy: "conversationStart",
     paging: {
@@ -306,43 +309,3 @@ function generateUserData(selectedUserId) {
 
     })
 }
-
-// function populateUsertable(results, row, agents) {
-//   for (const [key] of Object.entries(results)) {
-
-//     let cell;
-//     let text = "";
-//     let cellText = "";
-
-
-//     if (key != "organizationPresenceId") {
-
-//       if (key == "startTime") {
-//         text = results.startTime;
-//         text = text.replace("T", " ");
-//         text = text.replace("Z", "");
-//         text = text.slice(0,19);
-
-//       }
-
-//       if (key == "endTime") {
-//         text = results.endTime;
-//         text = text.replace("T", " ");
-//         text = text.replace("Z", "");
-//         text = text.slice(0,19);
-
-//       }
-
-//       if (key == "systemPresence") {
-//         text = results.systemPresence;
-//       }
-//       cell = document.createElement("td");
-//       cellText = document.createTextNode(text);
-//       cell.appendChild(cellText);
-//       row.appendChild(cell)
-//       agents.appendChild(row);
-//     }
-
-//   }
-
-// }
